@@ -1,22 +1,21 @@
 <template>
-    <form action="" @submit.prevent="submitForm">
-    <input type="text" v-model="nome">
-    <button>Enviar</button>
-  </form>
+    <div class="card-banner">
+      <img class="image-banner" src="../../public/banner.png" alt="">
+    </div>
 </template>
 
 <script>
-export default {
-  name: 'BannerCard',
-  data () {
-    return {
-      nome: ''
-    }
-  },
-  methods: {
-    submitForm () {
-      console.log(this.nome)
-    }
-  }
-}
+
 </script>
+<style>
+body {
+  background-image: url('../../public/pattern-1.png');
+  margin: 0;
+  padding: 0;
+}
+
+.image-banner {
+  width: 100%;
+}
+
+</style>
