@@ -161,6 +161,14 @@ h3 {
     position: absolute;
     top: 25%;
     background-color: white;
+    
+}
+
+@media(max-width: 400) {
+.form-card-group {
+    display: flex;
+    
+}    
 }
 .card-input {
     display: flex;
