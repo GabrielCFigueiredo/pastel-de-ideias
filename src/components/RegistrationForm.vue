@@ -3,7 +3,7 @@
     <div class="card-form">
         <form class="form-card-group" @submit.prevent="submitForm">
             <header class="card-title">
-                <h1>Monte aqui seu cardápio. O que está esperando?</h1>
+                <h3>Monte aqui seu cardápio. O que está esperando?</h3>
             </header>
             <section class="card">
                 <div class="card-input">
@@ -17,6 +17,9 @@
                 <div class="card-preview">
                     <div class="image-preview" :style="{'background-image': `url(${previewImage})`}" @click="selectImage"></div>
                     <input id="image-upload" ref="fileInput" type="file" @input='pickFile'>
+                </div>
+                <div class="card-pastries">
+                    <img class="pastries" src="../../public/pastel.png" alt="">
                 </div>
                 <div class="card-button">
                     <button class="btn-cancel" @click="cancelForm" type="button">Cancelar</button>
@@ -139,6 +142,12 @@ export default {
     align-items: center;
 }
 
+@media(max-width: 400px) {
+.card {
+    height: 20vh;
+}
+}
+
 h3 {
     color: #AD4925;
     padding: 0 3%;
@@ -160,15 +169,14 @@ h3 {
     border-radius: 10px;
     position: absolute;
     top: 25%;
-    background-color: white;
-    
+    background-color: white
 }
 
-@media(max-width: 400) {
+@media(max-width: 400px) {
 .form-card-group {
     display: flex;
-    
-}    
+
+}
 }
 .card-input {
     display: flex;
@@ -180,6 +188,9 @@ h3 {
 .card-input {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    border: 4px solid black;
+    height: 50%;
  }
 }
 
@@ -187,15 +198,26 @@ h3 {
     width: 90%;
     padding: 1%;
 }
+.title-product::placeholder {
+    color: #A43C23;
+}
 
 .price-product {
     width: 20%;
     padding: 1%;
 }
 
+.price-product::placeholder {
+    color: #A43C23;
+}
+
 .flavor-product {
     width: 90%;
     padding: 1%;
+}
+
+.flavor-product::placeholder {
+    color: #A43C23;
 }
 
 .card-description {
@@ -210,6 +232,7 @@ h3 {
 
 .description::placeholder {
     padding: 1%;
+    color: #A43C23;
 }
 
 .card-preview {
@@ -222,7 +245,7 @@ h3 {
 
 .image-preview {
     width: 100%;
-    height: 70%;
+    height: 60%;
     display: block;
     cursor: pointer;
     margin: 0 auto 10px;
@@ -251,9 +274,6 @@ h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
-.btn-cancel:hover {
-    box-shadow: 0 0 10px 0 blue inset, 0 0 10px 4px blue;
-  }
 
 .btn-register {
 appearance: none;
@@ -276,10 +296,6 @@ appearance: none;
   font-weight: 700;
 }
 
-.btn-register:hover {
-    box-shadow: 0 0 10px 0 blue inset, 0 0 10px 4px blue;
-  }
-
 .card-button {
     display: flex;
     position: absolute;
@@ -287,12 +303,13 @@ appearance: none;
 }
 .card-pastries {
     width: 100%;
+    height: 10vh;
 }
 .pastries {
     position: absolute;
     width: 50%;
     height: 85%;
-    bottom: 65%;
+    bottom: 55%;
     right: 80%;
     transform: rotate(10deg);
     filter: blur(4px);
@@ -355,16 +372,19 @@ h3 {
 .title-product {
     width: 90%;
     padding: 1%;
+    border: 1px solid #A43C23;
 }
 
 .price-product {
     width: 20%;
     padding: 1%;
+    border: 1px solid #A43C23;
 }
 
 .flavor-product {
     width: 90%;
     padding: 1%;
+    border: 1px solid #A43C23;
 }
 
 .card-description {
@@ -375,6 +395,7 @@ h3 {
 .description {
     width: 99%;
     height: 30%;
+    border: 1px solid #A43C23;
 }
 
 .description::placeholder {
@@ -397,7 +418,7 @@ h3 {
     margin: 0 auto 10px;
     background-size: cover;
     background-position: center center;
-    border: 1px solid #E53F36;
+    border: 1px solid #A43C23;
 }
 .btn-cancel {
   box-sizing: border-box;
@@ -420,9 +441,6 @@ h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
-.btn-cancel:hover {
-    box-shadow: 0 0 10px 0 blue inset, 0 0 10px 4px blue;
-  }
 
 .btn-register {
 appearance: none;
@@ -444,10 +462,6 @@ appearance: none;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
-
-.btn-register:hover {
-    box-shadow: 0 0 10px 0 blue inset, 0 0 10px 4px blue;
-  }
 
 .card-button {
     display: flex;
