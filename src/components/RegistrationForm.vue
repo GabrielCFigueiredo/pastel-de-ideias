@@ -29,14 +29,15 @@
         </form>
     </div>
     <section class="card-order" v-for="product in reversedResult" :key="product">
-        <header>
-            <h2>Aqui está o seu pedido. Bom Apetite!</h2>
-        </header>
         <article class="card-title-order">
+            <div>
+                <h2 class="order-title">Aqui está o seu pedido. Bom Apetite!</h2>
+            </div>
             <div class="order">
                 <h3 class="product-request-title">{{ product.name }}</h3>
-                <h3 class="asking-price">R$ {{ product.price }}</h3>
+                <h3 class="asking-price">R$ {{ product.price }},00</h3>
             </div>
+            <img class="image" :src='product.image' alt="suco">
             <div>
                 <h3>Sabor: {{ product.flavor }}</h3>
                 <h3>Descrição: {{ product.description }}</h3>
@@ -55,6 +56,7 @@ export default {
       flavor: '',
       price: '',
       description: '',
+      image: '',
       previewImage: null
     }
   },
@@ -70,7 +72,8 @@ export default {
         name: this.name,
         flavor: this.flavor,
         price: this.price,
-        description: this.description
+        description: this.description,
+        image: this.image
       }
       this.result.push(data)
       this.clear()
@@ -78,6 +81,7 @@ export default {
       this.flavor = ''
       this.price = ''
       this.description = ''
+      this.image = ''
     },
     selectImage () {
       this.$refs.fileInput.click()
@@ -108,6 +112,7 @@ export default {
       this.flavor = ''
       this.price = ''
       this.description = ''
+      this.image = ''
       this.previewImage = null
     }
   }
@@ -126,25 +131,13 @@ export default {
     flex-direction: column;
     width: 95%;
     align-items: center;
-}
-
-.card-form {
-    width: 100%;
-    height: 100%;
-    display: flex;
     justify-content: center;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    align-items: center;
 }
 
 @media(max-width: 400px) {
 .card {
     height: 20vh;
+    padding: 10%;
 }
 }
 
@@ -160,22 +153,9 @@ h3 {
     border-radius: 10px 10px 0 0;
 }
 
-.form-card-group {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    align-items: center;
-    box-shadow: 0 0 15px black;
-    border-radius: 10px;
-    position: absolute;
-    top: 25%;
-    background-color: white
-}
-
 @media(max-width: 400px) {
 .form-card-group {
     display: flex;
-
 }
 }
 .card-input {
@@ -186,17 +166,28 @@ h3 {
 }
 @media (max-width: 400px) {
 .card-input {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    border: 4px solid black;
     height: 50%;
+    gap: 10%;
+    padding: 10%;
  }
 }
 
 .title-product {
-    width: 90%;
+    width: 95%;
     padding: 1%;
+    border: 1px solid #A43C23;
+}
+
+@media (max-width: 400px) {
+.title-product {
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+    width: 90%;
+    gap: 10%;
+ }
 }
 .title-product::placeholder {
     color: #A43C23;
@@ -205,6 +196,7 @@ h3 {
 .price-product {
     width: 20%;
     padding: 1%;
+    border: 1px solid #A43C23;
 }
 
 .price-product::placeholder {
@@ -214,6 +206,7 @@ h3 {
 .flavor-product {
     width: 90%;
     padding: 1%;
+    border: 1px solid #A43C23;
 }
 
 .flavor-product::placeholder {
@@ -222,85 +215,58 @@ h3 {
 
 .card-description {
     width: 100%;
-    padding: 2%;
+    height: 20%;
+    padding: 1%;
+}
+
+@media (max-width: 400px) {
+.card-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+    gap: 10%;
+    padding: 7% 0 0 0;
+ }
 }
 
 .description {
     width: 99%;
-    height: 30%;
+    height: 50%;
+    border: 1px solid #A43C23;
 }
 
-.description::placeholder {
-    padding: 1%;
-    color: #A43C23;
-}
-
-.card-preview {
-    width: 100%;
-    height: 20vh;
+@media (max-width: 400px) {
+.description {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 50%;
+    width: 90%;
+    gap: 10%;
+ }
+}
+.description::placeholder {
+    color: #A43C23;
 }
 
 .image-preview {
     width: 100%;
-    height: 60%;
+    height: 80%;
     display: block;
     cursor: pointer;
-    margin: 0 auto 10px;
     background-size: cover;
     background-position: center center;
-    border: 1px solid #E53F36;
-}
-.btn-cancel {
-  box-sizing: border-box;
-  appearance: none;
-  background-color: #F9CB32;
-  border: 2px solid #F9CB32;
-  border-radius: 2em;
-  color: #A43C23;
-  cursor: pointer;
-  display: flex;
-  align-self: center;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1;
-  margin: 20px;
-  padding: 0.5em 1.0em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+    border: 1px solid #A43C23;
 }
 
-.btn-register {
-appearance: none;
-  background-color: #E53F36;
-  border: 2px solid #E53F36;
-  border-radius: 2em;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-self: center;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1;
-  margin: 20px;
-  padding: 0.5em 1.0em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+@media(max-width: 400px) {
+.image-preview {
+    height: 90%;
+    padding: 5% 0;
+}
 }
 
-.card-button {
-    display: flex;
-    position: absolute;
-    top: 91%;
-}
 .card-pastries {
     width: 100%;
     height: 10vh;
@@ -315,46 +281,28 @@ appearance: none;
     filter: blur(4px);
 }
 
-.card-order {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 30vh;
-}
-.card-title-order {
-    width: 50%;
-    height: 30%;
-}
 .order {
     display: flex;
     justify-content: space-between;
     background-color: #E53F36;
 }
 
-.product-request-title {
-    color: #F9CB32;
+@media(max-width: 400px) {
+.order{
+    width: 90vw;
+    padding: 5% 0;
 }
+}
+
 .asking-price {
     color: #FFF;
-}
-
-h3 {
-    color: #AD4925;
-    padding: 0 3%;
-}
-
-.card-title {
-    background-color: #F9CB32;
-    width: 100%;
-    padding: 0;
-    border-radius: 10px 10px 0 0;
 }
 
 .form-card-group {
     display: flex;
     flex-direction: column;
     width: 50%;
+    height: 50%;
     align-items: center;
     box-shadow: 0 0 15px black;
     border-radius: 10px;
@@ -362,44 +310,12 @@ h3 {
     top: 25%;
     background-color: white;
 }
-.card-input {
-    display: flex;
-    gap: 2%;
-    width: 100%;
-    padding: 1%;
-}
 
-.title-product {
+@media(max-width: 400px) {
+.form-card-group {
     width: 90%;
-    padding: 1%;
-    border: 1px solid #A43C23;
+    top: 7%;
 }
-
-.price-product {
-    width: 20%;
-    padding: 1%;
-    border: 1px solid #A43C23;
-}
-
-.flavor-product {
-    width: 90%;
-    padding: 1%;
-    border: 1px solid #A43C23;
-}
-
-.card-description {
-    width: 100%;
-    padding: 2%;
-}
-
-.description {
-    width: 99%;
-    height: 30%;
-    border: 1px solid #A43C23;
-}
-
-.description::placeholder {
-    padding: 1%;
 }
 
 .card-preview {
@@ -410,16 +326,13 @@ h3 {
     align-items: center;
 }
 
-.image-preview {
-    width: 100%;
-    height: 70%;
+@media(max-width: 400px) {
+.card-preview {
     display: block;
-    cursor: pointer;
-    margin: 0 auto 10px;
-    background-size: cover;
-    background-position: center center;
-    border: 1px solid #A43C23;
+    width: 90%;
 }
+}
+
 .btn-cancel {
   box-sizing: border-box;
   appearance: none;
@@ -443,7 +356,7 @@ h3 {
 }
 
 .btn-register {
-appearance: none;
+  appearance: none;
   background-color: #E53F36;
   border: 2px solid #E53F36;
   border-radius: 2em;
@@ -463,22 +376,16 @@ appearance: none;
   font-weight: 700;
 }
 
+@media(max-width: 400px) {
+.btn-register {
+    padding: 0.2em;
+}
+}
+
 .card-button {
     display: flex;
     position: absolute;
     top: 91%;
-}
-.card-pastries {
-    width: 100%;
-}
-.pastries {
-    position: absolute;
-    width: 50%;
-    height: 85%;
-    bottom: 65%;
-    right: 80%;
-    transform: rotate(10deg);
-    filter: blur(4px);
 }
 
 .card-order {
@@ -488,23 +395,35 @@ appearance: none;
     justify-content: end;
     width: 100%;
     height: 30vh;
-    position: relative;
-    padding: 5% 0;
+    padding: 10% 0;
 }
-.card-title-order {
-    width: 50%;
-    height: 30%;
+
+@media(max-width: 400px) {
+.card-order {
+
 }
-.order {
-    display: flex;
-    justify-content: space-between;
-    background-color: #E53F36;
 }
 
 .product-request-title {
     color: #F9CB32;
 }
-.asking-price {
-    color: #FFF;
+
+.image {
+    width: 20px;
+    height: 20px;
+}
+
+@media(max-width: 400px) {
+.card-title-order {
+    width: 90%;
+    height: 20vh;
+    margin-top: 100%;
+}
+}
+
+@media(max-width: 400px) {
+.order-title {
+    margin-top: 100%;
+}
 }
 </style>
