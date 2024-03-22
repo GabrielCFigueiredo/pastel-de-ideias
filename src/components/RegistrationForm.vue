@@ -4,14 +4,17 @@
         <div class="card-title">
             <h3>Monte aqui seu cardápio. O que está esperando?</h3>
         </div>
+        <div class="card-pastries">
+            <img class="pastries" src="../../public/pastel.png" alt="">
+        </div>
         <div class="card">
         <div class="card-input">
-            <input class="title-product" type="text" placeholder="Titúlo do Pedido" v-model="nome" required />
-            <input class="flavor-product" type="text" placeholder="Sabor" v-model="sabor" required />
+            <input class="title-product" type="text" placeholder="Titúlo do Pedido" v-model="nome" required minlength="3" maxlength="60" />
+            <input class="flavor-product" type="text" placeholder="Sabor" v-model="sabor" required minlength="3" maxlength="60" />
             <input class="price-product" type="number" placeholder="R$" v-model="price" required />
         </div>
         <div class="card-description">
-            <textarea class="description"  placeholder="Descrição" v-model="name" required></textarea>
+            <textarea class="description"  placeholder="Descrição" v-model="description" required></textarea>
         </div>
         <div class="card-preview">
             <div class="image-preview" :style="{'background-image': `url(${previewImage})`}" @click="selectImage"></div>
@@ -27,11 +30,36 @@
                 <button class="btn-register">Cadastrar</button>
             </div>
         </div>
-        <div>
-            <img class="pastries" src="../../public/pastel.png" alt="">
-        </div>
     </div>
     </form>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="card-order">
+    <div>
+        <h1>Aqui está o seu pedidos Bom Apetite!</h1>
+    </div>
+    <div class="card-title-order">
+        <div class="order">
+            <h3 class="product-request-title">{{ nome }}</h3>
+            <h3 class="asking-price">R$ {{ price }}</h3>
+        </div>
+        <h3>Sabor: {{ sabor }}</h3>
+    </div>
 </div>
 </template>
 <script>
@@ -39,19 +67,21 @@ export default {
   name: 'RegistrationForm',
   data () {
     return {
+      result: [],
       nome: '',
       sabor: '',
       price: '',
+      description: '',
       previewImage: null
     }
   },
   methods: {
     submitForm () {
-      console.log(
-        this.nome,
-        this.sabor,
-        this.price
-      )
+      this.result.push(this.nome, this.sabor, this.price, this.description)
+      this.nome = ''
+      this.sabor = ''
+      this.price = ''
+      this.description = ''
     },
     selectImage () {
       this.$refs.fileInput.click()
@@ -218,9 +248,42 @@ appearance: none;
     position: absolute;
     top: 91%;
 }
+.card-pastries {
+    width: 100%;
+}
 .pastries {
     position: absolute;
-    top: 0;
-    color: transparent;
+    width: 50%;
+    height: 85%;
+    bottom: 65%;
+    right: 80%;
+    transform: rotate(10deg);
+    filter: blur(4px);
+}
+
+.card-order {
+    border: 1px solid #E53F36;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+}
+.card-title-order {
+    border: 1px solid rebeccapurple;
+    width: 50%;
+    height: 30%;
+}
+.order {
+    display: flex;
+    justify-content: space-between;
+    background-color: #E53F36;
+}
+
+.product-request-title {
+    color: #F9CB32;
+}
+.asking-price {
+    color: #FFF;
 }
 </style>
