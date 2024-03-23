@@ -18,4 +18,17 @@ export default {
 
 <style>
 
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
 </style>

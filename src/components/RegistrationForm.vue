@@ -1,48 +1,90 @@
 <template>
 <div class="container">
     <div class="card-form">
+        <header class="card-title">
+            <h3>Monte aqui seu cardápio. O que está esperando?</h3>
+        </header>
         <form class="form-card-group" @submit.prevent="submitForm">
-            <header class="card-title">
-                <h3>Monte aqui seu cardápio. O que está esperando?</h3>
-            </header>
             <section class="card">
                 <div class="card-input">
-                    <input id="title-product" class="title-product" type="text" placeholder="Título do Pedido" v-model="name" required minlength="3" maxlength="60" />
-                    <input id="flavor-product" class="flavor-product" type="text" placeholder="Sabor" v-model="flavor" required minlength="3" maxlength="60" />
-                    <input id="price-product" class="price-product" type="number" placeholder="R$" v-model="price" required />
+                    <input
+                    id="title-product"
+                    class="title-product"
+                    type="text"
+                    placeholder="Título do Pedido"
+                    v-model="name"
+                    required
+                    minlength="3"
+                    maxlength="60" />
+                </div>
+                <div class="card-input">
+                    <input
+                    id="flavor-product"
+                    class="flavor-product"
+                    type="text"
+                    placeholder="Sabor"
+                    v-model="flavor"
+                    required
+                    minlength="3"
+                    maxlength="60" />
+                </div>
+                <div class="card-input">
+                    <input
+                    id="price-product"
+                    class="price-product"
+                    type="number"
+                    placeholder="R$"
+                    v-model="price"
+                    required />
                 </div>
                 <div class="card-description">
-                    <textarea id="description" class="description" placeholder="Descrição" v-model="description" required></textarea>
+                    <textarea id="description"
+                    class="description"
+                    placeholder="Descrição"
+                    v-model="description"
+                    required>
+                </textarea>
                 </div>
                 <div class="card-preview">
-                    <div class="image-preview" :style="{'background-image': `url(${previewImage})`}" @click="selectImage"></div>
-                    <input id="image-upload" ref="fileInput" type="file" @input='pickFile'>
+                <div
+                    class="image-preview"
+                    :style="{'background-image': `url(${previewImage})`}"
+                    @click="selectImage">
+                </div>
+                    <input
+                    id="image-upload"
+                    ref="fileInput"
+                    type="file"
+                    @input='pickFile'>
                 </div>
                 <div class="card-pastries">
-                    <img class="pastries" src="../../public/pastel.png" alt="">
+                    <img
+                    class="pastries"
+                    src="../../public/pastel-desfocado.png"
+                    alt="">
                 </div>
-                <div class="card-button">
-                    <button class="btn-cancel" @click="cancelForm" type="button">Cancelar</button>
-                    <button class="btn-register" type="submit">Cadastrar</button>
+                <div class="card-btn">
+                    <button
+                    class="btn-cancel"
+                    @click="cancelForm"
+                    type="button">Cancelar</button>
+                    <button
+                    class="btn-register"
+                    type="submit">Cadastrar</button>
                 </div>
             </section>
         </form>
     </div>
     <section class="card-order" v-for="product in reversedResult" :key="product">
-        <article class="card-title-order">
-            <div>
-                <h2 class="order-title">Aqui está o seu pedido. Bom Apetite!</h2>
-            </div>
-            <div class="order">
-                <h3 class="product-request-title">{{ product.name }}</h3>
-                <h3 class="asking-price">R$ {{ product.price }},00</h3>
-            </div>
-            <img class="image" :src='product.image' alt="suco">
-            <div>
-                <h3>Sabor: {{ product.flavor }}</h3>
-                <h3>Descrição: {{ product.description }}</h3>
-            </div>
-        </article>
+        <div class="order">
+            <h3 class="product-request-title">{{ product.name }}</h3>
+            <h3 class="asking-price">R$ {{ product.price }},00</h3>
+        </div>
+        <img class="image" :src='product.image' alt="suco">
+        <div>
+            <h3>Sabor: {{ product.flavor }}</h3>
+            <h3>Descrição: {{ product.description }}</h3>
+        </div>
     </section>
 </div>
 </template>
@@ -119,83 +161,75 @@ export default {
 }
 </script>
 <style>
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .card-form {
     width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.card {
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px black;
     display: flex;
     flex-direction: column;
-    width: 95%;
-    align-items: center;
-    justify-content: center;
+    gap: 12px;
+    border: 1px solid black;
+    position: absolute;
+    top: 40%;
+    background: #FFF;
 }
 
-@media(max-width: 400px) {
 .card {
-    height: 20vh;
-    padding: 10%;
-}
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 h3 {
     color: #AD4925;
-    padding: 0 3%;
+    font-weight: 600;
 }
 
 .card-title {
     background-color: #F9CB32;
-    width: 100%;
-    padding: 0;
     border-radius: 10px 10px 0 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
 }
 
-@media(max-width: 400px) {
-.form-card-group {
-    display: flex;
+.card-input:nth-child(2n) {
+    justify-content: end;
 }
-}
+
 .card-input {
-    display: flex;
-    gap: 2%;
-    width: 100%;
-    padding: 1%;
-}
-@media (max-width: 400px) {
-.card-input {
-    flex-direction: column;
-    align-items: center;
-    height: 50%;
-    gap: 10%;
-    padding: 10%;
- }
+display: flex;
+flex-wrap: wrap;
+justify-content: end;
+flex-grow: 1;
+padding: 0 1%;
+padding-bottom: 15px;
 }
 
 .title-product {
-    width: 95%;
-    padding: 1%;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border-radius: 7px;
     border: 1px solid #A43C23;
 }
 
-@media (max-width: 400px) {
-.title-product {
-    flex-direction: column;
-    align-items: center;
-    height: 50%;
-    width: 90%;
-    gap: 10%;
- }
-}
 .title-product::placeholder {
     color: #A43C23;
 }
 
 .price-product {
-    width: 20%;
-    padding: 1%;
+    width: 50%;
+    padding: 10px;
+    outline: none;
+    border-radius: 7px;
     border: 1px solid #A43C23;
 }
 
@@ -204,8 +238,10 @@ h3 {
 }
 
 .flavor-product {
-    width: 90%;
-    padding: 1%;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border-radius: 7px;
     border: 1px solid #A43C23;
 }
 
@@ -216,55 +252,33 @@ h3 {
 .card-description {
     width: 100%;
     height: 20%;
-    padding: 1%;
-}
-
-@media (max-width: 400px) {
-.card-description {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 50%;
-    gap: 10%;
-    padding: 7% 0 0 0;
- }
+    padding: 0 0 0 1%;
 }
 
 .description {
     width: 99%;
-    height: 50%;
+    padding: 10px;
+    outline: none;
+    border-radius: 7px;
     border: 1px solid #A43C23;
 }
 
-@media (max-width: 400px) {
-.description {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 50%;
-    width: 90%;
-    gap: 10%;
- }
-}
 .description::placeholder {
     color: #A43C23;
 }
 
 .image-preview {
     width: 100%;
-    height: 80%;
+    height: 100%;
+    padding: 10px;
+    outline: none;
+    border-radius: 7px;
+    border: 1px solid #A43C23;
     display: block;
     cursor: pointer;
     background-size: cover;
     background-position: center center;
     border: 1px solid #A43C23;
-}
-
-@media(max-width: 400px) {
-.image-preview {
-    height: 90%;
-    padding: 5% 0;
-}
 }
 
 .card-pastries {
@@ -273,11 +287,12 @@ h3 {
 }
 .pastries {
     position: absolute;
-    width: 50%;
-    height: 85%;
-    bottom: 55%;
-    right: 80%;
-    transform: rotate(10deg);
+    width: 70%;
+    height: 95%;
+    bottom: 68%;
+    right: 66%;
+    transform: rotateZ(50deg);
+    transform: rotateY(45deg);
     filter: blur(4px);
 }
 
@@ -287,52 +302,27 @@ h3 {
     background-color: #E53F36;
 }
 
-@media(max-width: 400px) {
-.order{
-    width: 90vw;
-    padding: 5% 0;
-}
-}
-
 .asking-price {
     color: #FFF;
 }
 
 .form-card-group {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 50%;
-    align-items: center;
-    box-shadow: 0 0 15px black;
-    border-radius: 10px;
-    position: absolute;
-    top: 25%;
-    background-color: white;
-}
-
-@media(max-width: 400px) {
-.form-card-group {
-    width: 90%;
-    top: 7%;
-}
 }
 
 .card-preview {
     width: 100%;
-    height: 20vh;
+    padding: 1%;
+    height: 200px;
+}
+
+.card-btn {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 92%;
 }
-
-@media(max-width: 400px) {
-.card-preview {
-    display: block;
-    width: 90%;
-}
-}
-
 .btn-cancel {
   box-sizing: border-box;
   appearance: none;
@@ -347,7 +337,7 @@ h3 {
   font-weight: 400;
   line-height: 1;
   margin: 20px;
-  padding: 0.5em 1.0em;
+  padding: 0.7em 1.5em;
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
@@ -368,18 +358,12 @@ h3 {
   font-weight: 400;
   line-height: 1;
   margin: 20px;
-  padding: 0.5em 1.0em;
+  padding: 0.7em 1.5em;
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-}
-
-@media(max-width: 400px) {
-.btn-register {
-    padding: 0.2em;
-}
 }
 
 .card-button {
@@ -391,17 +375,14 @@ h3 {
 .card-order {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: end;
     width: 100%;
-    height: 30vh;
-    padding: 10% 0;
-}
-
-@media(max-width: 400px) {
-.card-order {
-
-}
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px black;
+    gap: 12px;
+    position: absolute;
+    top: 100%;
+    background: #FFF;
 }
 
 .product-request-title {
@@ -413,17 +394,4 @@ h3 {
     height: 20px;
 }
 
-@media(max-width: 400px) {
-.card-title-order {
-    width: 90%;
-    height: 20vh;
-    margin-top: 100%;
-}
-}
-
-@media(max-width: 400px) {
-.order-title {
-    margin-top: 100%;
-}
-}
 </style>
