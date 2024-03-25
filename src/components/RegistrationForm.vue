@@ -77,8 +77,8 @@
     </div>
     <section class="card-order" v-for="product in reversedResult" :key="product">
         <div class="order">
-            <h3 class="product-request-title">{{ product.name }}</h3>
-            <h3 class="asking-price">R$ {{ product.price }},00</h3>
+            <h2 class="product-request-title">{{ product.name }}</h2>
+            <h2 class="asking-price">R$ {{ product.price }},00</h2>
         </div>
         <img class="image" :src='product.image' alt="suco">
         <div>
@@ -98,7 +98,6 @@ export default {
       flavor: '',
       price: '',
       description: '',
-      image: '',
       previewImage: null
     }
   },
@@ -114,16 +113,15 @@ export default {
         name: this.name,
         flavor: this.flavor,
         price: this.price,
-        description: this.description,
-        image: this.image
+        description: this.description
       }
       this.result.push(data)
+      console.log(data)
       this.clear()
       this.name = ''
       this.flavor = ''
       this.price = ''
       this.description = ''
-      this.image = ''
     },
     selectImage () {
       this.$refs.fileInput.click()
@@ -176,7 +174,7 @@ export default {
     gap: 12px;
     border: 1px solid black;
     position: absolute;
-    top: 40%;
+    top: 325px;
     background: #FFF;
 }
 
@@ -209,7 +207,7 @@ display: flex;
 flex-wrap: wrap;
 justify-content: end;
 flex-grow: 1;
-padding: 0 1%;
+padding: 0 12px;
 padding-bottom: 15px;
 }
 
@@ -252,7 +250,7 @@ padding-bottom: 15px;
 .card-description {
     width: 100%;
     height: 20%;
-    padding: 0 0 0 1%;
+    padding: 0 0 0 12px;
 }
 
 .description {
@@ -288,11 +286,10 @@ padding-bottom: 15px;
 .pastries {
     position: absolute;
     width: 70%;
-    height: 95%;
-    bottom: 68%;
-    right: 66%;
-    transform: rotateZ(50deg);
-    transform: rotateY(45deg);
+    height: 395px;
+    bottom: 328px;
+    right:820px;
+    transform: rotateY(55deg);
     filter: blur(4px);
 }
 
@@ -300,6 +297,15 @@ padding-bottom: 15px;
     display: flex;
     justify-content: space-between;
     background-color: #E53F36;
+    padding: 20px 0;
+}
+
+.order h2 {
+    padding: 0 20px;
+}
+
+div h3 {
+    padding: 10px 20px;
 }
 
 .asking-price {
@@ -311,7 +317,7 @@ padding-bottom: 15px;
 
 .card-preview {
     width: 100%;
-    padding: 1%;
+    padding: 10px;
     height: 200px;
 }
 
@@ -321,23 +327,23 @@ padding-bottom: 15px;
     align-items: center;
     width: 100%;
     position: absolute;
-    top: 92%;
+    top: 449px;
 }
 .btn-cancel {
   box-sizing: border-box;
   appearance: none;
   background-color: #F9CB32;
   border: 2px solid #F9CB32;
-  border-radius: 2em;
+  border-radius: 20px;
   color: #A43C23;
   cursor: pointer;
   display: flex;
   align-self: center;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1;
   margin: 20px;
-  padding: 0.7em 1.5em;
+  padding: 12px 25px;
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
@@ -349,27 +355,21 @@ padding-bottom: 15px;
   appearance: none;
   background-color: #E53F36;
   border: 2px solid #E53F36;
-  border-radius: 2em;
+  border-radius: 20px;
   color: white;
   cursor: pointer;
   display: flex;
   align-self: center;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1;
   margin: 20px;
-  padding: 0.7em 1.5em;
+  padding: 12px 25px;
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-}
-
-.card-button {
-    display: flex;
-    position: absolute;
-    top: 91%;
 }
 
 .card-order {
@@ -381,7 +381,7 @@ padding-bottom: 15px;
     box-shadow: 0 0 15px black;
     gap: 12px;
     position: absolute;
-    top: 100%;
+    top: 900px;
     background: #FFF;
 }
 
@@ -392,6 +392,17 @@ padding-bottom: 15px;
 .image {
     width: 20px;
     height: 20px;
+    padding: 10px 20px;
+}
+@media(max-width: 450px) {
+.card-form{
+    top: 80px;
+}
+}
+@media(max-width: 700px) {
+.card-form{
+
+}
 }
 
 </style>

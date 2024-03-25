@@ -1,26 +1,34 @@
 <template>
-    <div class="card-banner">
-      <img class="image-banner" src="../../public/wave.svg" alt="">
-      <div class="card-group" >
-        <img src="../../public/Group 6.svg" alt="">
-      </div>
-      <div class="card-puppet" >
-        <img src="../../public/Group 2.svg" alt="">
-      </div>
-      <div class="card-pastry" >
-        <img src="../../public/pasteis.png" alt="">
-      </div>
-    </div>
+    <header class="container">
+  <div class="card">
+    <figure class="card-banner">
+      <img class="image-banner" src="../../public/Vector 1.svg" alt="">
+    </figure>
+  </div>
+</header>
 </template>
 
 <script>
 
 </script>
 <style>
+
+*{
+  margin: 0;
+  padding: 0;
+}
 body {
   background-image: url('../../public/pattern-1.png');
   margin: 0;
   padding: 0;
+}
+
+.container {
+  width: 100%;
+}
+
+.banner {
+  width: 100%;
 }
 
 .card-group {
@@ -39,5 +47,20 @@ body {
   position: absolute;
   top: 21%;
   left: 62%;
+}
+@media(max-width: 450px) {
+.image-banner{
+  width: 100%;
+}
+}
+@media(max-width: 700px) {
+.image-banner{
+  width: 100%;
+}
+}
+@media(max-width: 1253px) {
+.image-banner{
+  width: 100%;
+}
 }
 </style>
