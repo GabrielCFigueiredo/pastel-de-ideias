@@ -75,17 +75,19 @@
             </section>
         </form>
     </div>
-    <section class="card-order" v-for="product in reversedResult" :key="product">
-        <div class="order">
-            <h2 class="product-request-title">{{ product.name }}</h2>
-            <h2 class="asking-price">R$ {{ product.price }},00</h2>
-        </div>
-        <img class="image" :src='product.image' alt="suco">
-        <div>
-            <h3>Sabor: {{ product.flavor }}</h3>
-            <h3>Descrição: {{ product.description }}</h3>
-        </div>
-    </section>
+    <div class="section-card">
+        <section class="card-order" v-for="product in reversedResult" :key="product">
+            <div class="order">
+                <h2>{{ product.name }}</h2>
+                <h2>R$ {{ product.price }},00</h2>
+            </div>
+            <img :src='product.image' alt="suco">
+            <div>
+                <h3>Sabor: {{ product.flavor }}</h3>
+                <h3>Descrição: {{ product.description }}</h3>
+            </div>
+        </section>
+    </div>
 </div>
 </template>
 <script>
@@ -98,6 +100,7 @@ export default {
       flavor: '',
       price: '',
       description: '',
+      image: '',
       previewImage: null
     }
   },
@@ -113,7 +116,8 @@ export default {
         name: this.name,
         flavor: this.flavor,
         price: this.price,
-        description: this.description
+        description: this.description,
+        image: this.image
       }
       this.result.push(data)
       console.log(data)
@@ -122,6 +126,7 @@ export default {
       this.flavor = ''
       this.price = ''
       this.description = ''
+      this.image = ''
     },
     selectImage () {
       this.$refs.fileInput.click()
@@ -163,6 +168,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 12px;
 }
 .card-form {
     width: 100%;
@@ -298,6 +304,9 @@ padding-bottom: 15px;
     justify-content: space-between;
     background-color: #E53F36;
     padding: 20px 0;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid black;
 }
 
 .order h2 {
@@ -372,17 +381,21 @@ div h3 {
   font-weight: 700;
 }
 
-.card-order {
+.section-card{
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
     max-width: 1200px;
     border-radius: 10px;
     box-shadow: 0 0 15px black;
-    gap: 12px;
     position: absolute;
     top: 900px;
     background: #FFF;
+}
+
+.card-order{
+    width: 100%;
 }
 
 .product-request-title {
